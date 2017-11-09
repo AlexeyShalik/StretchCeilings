@@ -4,59 +4,58 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('bundles/css/dashboard.css') }}" type="text/css" />
 {% endblock %}
 
 {% block content %}
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        {{ wo_render_breadcrumbs() }}
-        <h2 class="sub-header">Управление пользователями</h2>
-        <div class="table-responsive">
-            <div class="count">
-                {% if users.getTotalItemCount == 1 %}
-                    В системе {{ users.getTotalItemCount }} пользователь
-                {% else %}
-                    В системе {{ users.getTotalItemCount }} пользователей
-                {% endif %}
-            </div>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>{{ knp_pagination_sortable(users, 'Id', 'users.id') }}</th>
-                            <th{% if users.isSorted('user.username') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(users, 'Имя', 'users.username') }}</th>
-                            <th>{{ knp_pagination_sortable(users, 'Почта', 'users.email') }}</th>
-                            <th>{{ knp_pagination_sortable(users, 'Активен', 'users.enable') }}</th>
-                            <th>{{ knp_pagination_sortable(users, 'Роль', 'users.roles') }}</th>
-                            <th>Действия</th>
+    <a href="{{ path('create_user') }}" class="btn btn-default" style="float: right">Создать управляющего</a>
+    <h2 class="sub-header">Управление пользователями</h2>
+    <div class="table-responsive">
+        <div class="count">
+            {% if users.getTotalItemCount == 1 %}
+                В системе {{ users.getTotalItemCount }} пользователь
+            {% elseif users.getTotalItemCount == 2 or users.getTotalItemCount == 3 or users.getTotalItemCount == 4 %}
+                В системе {{ users.getTotalItemCount }} пользователя
+            {% else %}
+                В системе {{ users.getTotalItemCount }} пользователей
+            {% endif %}
+        </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>{{ knp_pagination_sortable(users, 'Id', 'users.id') }}</th>
+                        <th{% if users.isSorted('user.username') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(users, 'Имя', 'users.username') }}</th>
+                        <th>{{ knp_pagination_sortable(users, 'Почта', 'users.email') }}</th>
+                        <th>{{ knp_pagination_sortable(users, 'Активен', 'users.enable') }}</th>
+                        <th>{{ knp_pagination_sortable(users, 'Роль', 'users.roles') }}</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr {% if loop.index is odd %}class="color"{% endif %}>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>
+                                {% if user.enabled %}
+                                    <i class="glyphicon glyphicon-ok" style="color: green;"></i>
+                                {% else %}
+                                    <i class="glyphicon glyphicon-remove" style="color: red"></i>
+                                {% endif %}
+                            </td>
+                            <td>{{ user.getRole() }}</td>
+                            <td>
+                                <a class="btn btn-default" href="{{ path('edit_user', { 'id': user.id }) }}" title="Редактирование">
+                                    <i class="glyphicon glyphicon-pencil" ></i> </a>
+                                <a class="btn btn-default" {#href="{{ path('admin_users_remove', { 'id': user.id }) }}"#} title="Удаление">
+                                    <i class="glyphicon glyphicon-trash"></i></a>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {% for user in users %}
-                            <tr {% if loop.index is odd %}class="color"{% endif %}>
-                                <td>{{ user.id }}</td>
-                                <td>{{ user.username }}</td>
-                                <td>{{ user.email }}</td>
-                                <td>
-                                    {% if user.enabled %}
-                                        <i class="glyphicon glyphicon-ok" style="color: green;"></i>
-                                    {% else %}
-                                        <i class="glyphicon glyphicon-remove" style="color: red"></i>
-                                    {% endif %}
-                                </td>
-                                <td>{{ user.getRole() }}</td>
-                                <td>
-                                    <a class="btn btn-default" {#href="{{ path('admin_users_edit', { 'id': user.id }) }}"#}>
-                                        <i class="glyphicon glyphicon-pencil"></i> </a>
-                                    <a class="btn btn-default" {#href="{{ path('admin_users_remove', { 'id': user.id }) }}"#}>
-                                        <i class="glyphicon glyphicon-trash"></i></a>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            <div class="navigation">
-                {{ knp_pagination_render(users) }}
-            </div>
+                    {% endfor %}
+                </tbody>
+            </table>
+        <div class="navigation">
+            {{ knp_pagination_render(users) }}
         </div>
     </div>
 {% endblock %}

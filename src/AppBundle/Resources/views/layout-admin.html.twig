@@ -4,6 +4,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/css/dashboard.css') }}" type="text/css" />
 {% endblock %}
 
 {% block body %}
@@ -23,13 +24,16 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
-                {#{% if is_granted('ROLE_ADMIN') %}#}
+                {% if is_granted('ROLE_ADMIN') %}
                     {{ knp_menu_render('AppBundle:MenuBuilder:adminMenu', {'currentClass': 'active'}) }}
-                {#{% else %}#}
-                    {#{{ knp_menu_render('AppBundle:MenuBuilder:managerMenu') }}#}
-                {#{% endif %}#}
+                {% else %}
+                    {{ knp_menu_render('AppBundle:MenuBuilder:managerMenu') }}
+                {% endif %}
             </div>
-        {% block content %}{% endblock %}
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                {{ wo_render_breadcrumbs() }}
+                {% block content %}{% endblock %}
+            </div>
         </div>
     </div>
 {% endblock %}
