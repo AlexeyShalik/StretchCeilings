@@ -1,0 +1,80 @@
+{% extends "@App/layout-admin.html.twig" %}
+
+{% block title %}Управление заказами звонков{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <a href="{{ path('create_user') }}" class="btn btn-default" style="float: right">Создать заказ</a>
+    <h2 class="sub-header">Управление заказами звонков</h2>
+
+    {% for flashMessage in app.session.flashbag.get('info') %}
+        <div class="alert alert-info" role="alert">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+    <div class="table-responsive">
+        <div class="count">
+            {% if orders.getTotalItemCount == 1 %}
+                В системе {{ orders.getTotalItemCount }} заказ
+            {% elseif orders.getTotalItemCount == 2 or orders.getTotalItemCount == 3 or orders.getTotalItemCount == 4 %}
+                В системе {{ orders.getTotalItemCount }} заказа
+            {% else %}
+                В системе {{ orders.getTotalItemCount }} заказов
+            {% endif %}
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(orders, 'Id', 'orders.id') }}</th>
+                <th{% if orders.isSorted('orders.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(orders, 'Имя', 'orders.name') }}</th>
+                <th>{{ knp_pagination_sortable(orders, 'Телефон', 'orders.phone') }}</th>
+                <th>{{ knp_pagination_sortable(orders, 'Время звонка', 'orders.time_to_call') }}</th>
+                <th>{{ knp_pagination_sortable(orders, 'Город', 'orders.city') }}</th>
+                <th>{{ knp_pagination_sortable(orders, 'Описание', 'orders.description') }}</th>
+                <th>{{ knp_pagination_sortable(orders, 'Статус', 'orders.status') }}</th>
+                <th>{{ knp_pagination_sortable(orders, 'Время подачи заявки', 'orders.date_order') }}</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in orders %}
+                <tr {% if loop.index is odd %}class="color"{% endif %}>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.name }}</td>
+                    <td>{{ order.phone }}</td>
+                    <td>{{ order.getTimeToCall() }}</td>
+                    <td>{{ order.city }}</td>
+                    <td>{{ order.description }}</td>
+                    <td>{{ order.status }}</td>
+                    <td>{{ order.getDateOrder()| date('Y-m-d H:i:s') }}</td>
+                    <td>
+                        <a class="btn btn-default" {#href="{{ path('edit_user', { 'id': order.id }) }}"#} title="Редактирование">
+                            <i class="glyphicon glyphicon-pencil" ></i> </a>
+                        <a class="btn btn-default btn-delete" data-form = "{{ 'delete-form-'~order.id }}"{# href="{{ path('delete_user', { 'id': user.id }) }}" #}title="Удаление">
+                            <i class="glyphicon glyphicon-trash"></i></a>
+                        {{ form(deletedForms[order.id], {'attr':{'id':'delete-form-'~order.id }}) }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="navigation">
+            {{ knp_pagination_render(orders, 'AppBundle:Pagination:pagination.html.twig') }}
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    {#<script>#}
+        {#$('.btn-delete').on('click', function () {#}
+            {#var deleteForm = this.getAttribute('data-form');#}
+            {#$('#' + deleteForm).submit();#}
+        {#});#}
+    {#</script>#}
+{% endblock %}

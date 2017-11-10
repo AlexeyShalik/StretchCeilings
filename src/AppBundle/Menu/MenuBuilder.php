@@ -10,14 +10,7 @@ class MenuBuilder implements ContainerAwareInterface
 
     public function adminMenu(FactoryInterface $factory, array $options)
     {
-        $menu = $factory->createItem('Home', array('childrenAttributes' => array('class' => 'nav nav-sidebar')));
-        $menu
-        ->addChild(
-            'Статистика',
-            array(
-                'route' => 'dashboard')
-        );
-
+        $menu = $this->commonMenu($factory);
         $menu
             ->addChild(
                 'Управление пользователями',
@@ -29,13 +22,24 @@ class MenuBuilder implements ContainerAwareInterface
 
     public function managerMenu(FactoryInterface $factory, array $options)
     {
+        $menu = $this->commonMenu($factory);
+        return $menu;
+    }
+
+    private function commonMenu(FactoryInterface $factory)
+    {
         $menu = $factory->createItem('Home', array('childrenAttributes' => array('class' => 'nav nav-sidebar')));
         $menu
             ->addChild(
                 'Статистика',
                 array(
-                    'route' => 'dashboard',
-                    'attributes' => array('class' => 'active'))
+                    'route' => 'dashboard')
+            );
+        $menu
+            ->addChild(
+                'Управление заказами звонков',
+                array(
+                    'route' => 'orders_to_call')
             );
         return $menu;
     }

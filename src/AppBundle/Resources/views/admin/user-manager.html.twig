@@ -9,6 +9,13 @@
 {% block content %}
     <a href="{{ path('create_user') }}" class="btn btn-default" style="float: right">Создать управляющего</a>
     <h2 class="sub-header">Управление пользователями</h2>
+
+    {% for flashMessage in app.session.flashbag.get('info') %}
+        <div class="alert alert-info" role="alert">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
     <div class="table-responsive">
         <div class="count">
             {% if users.getTotalItemCount == 1 %}
@@ -25,7 +32,7 @@
                         <th>{{ knp_pagination_sortable(users, 'Id', 'users.id') }}</th>
                         <th{% if users.isSorted('user.username') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(users, 'Имя', 'users.username') }}</th>
                         <th>{{ knp_pagination_sortable(users, 'Почта', 'users.email') }}</th>
-                        <th>{{ knp_pagination_sortable(users, 'Активен', 'users.enable') }}</th>
+                        <th>{{ knp_pagination_sortable(users, 'Активен', 'users.enabled') }}</th>
                         <th>{{ knp_pagination_sortable(users, 'Роль', 'users.roles') }}</th>
                         <th>Действия</th>
                     </tr>
@@ -47,15 +54,27 @@
                             <td>
                                 <a class="btn btn-default" href="{{ path('edit_user', { 'id': user.id }) }}" title="Редактирование">
                                     <i class="glyphicon glyphicon-pencil" ></i> </a>
-                                <a class="btn btn-default" {#href="{{ path('admin_users_remove', { 'id': user.id }) }}"#} title="Удаление">
+                                <a class="btn btn-default btn-delete" data-form = "{{ 'delete-form-'~user.id }}"{#href="{{ path('delete_user', { 'id': user.id }) }}"#} title="Удаление">
                                     <i class="glyphicon glyphicon-trash"></i></a>
+                                {{ form(deletedForms[user.id], {'attr':{'id':'delete-form-'~user.id }}) }}
                             </td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
         <div class="navigation">
-            {{ knp_pagination_render(users) }}
+            {{ knp_pagination_render(users, 'AppBundle:Pagination:pagination.html.twig') }}
         </div>
     </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('.btn-delete').on('click', function () {
+            var deleteForm = this.getAttribute('data-form');
+            $('#' + deleteForm).submit();
+        });
+    </script>
 {% endblock %}

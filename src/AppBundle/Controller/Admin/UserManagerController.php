@@ -10,33 +10,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route("/admin")
+ * @Route("/admin/user-manager")
  */
-class AdminController extends Controller
+class UserManagerController extends Controller
 {
     /**
-     * @Route("/", name="admin")
-     */
-    public function adminAction(Request $request)
-    {
-        return $this->redirectToRoute('fos_user_security_login');
-    }
-
-    /**
-     * @Route("/dashboard", name="dashboard")
-     */
-    public function dashboardAction(Request $request)
-    {
-        $breadcrumbs = $this->get("white_october_breadcrumbs");
-        $breadcrumbs->addItem("Статистика");
-        // Example with parameter injected into translation "user.profile"
-        //$breadcrumbs->addItem($txt, $url, ["%user%" => $user->getName()]);
-
-        return $this->render('@App/admin/dashboard.html.twig');
-    }
-
-    /**
-     * @Route("/user-manager", name="user_manager")
+     * @Route("/", name="user_manager", methods={"GET"})
      */
     public function userManagerAction(Request $request)
     {
@@ -44,7 +23,7 @@ class AdminController extends Controller
         $breadcrumbs->addItem("Управление пользователями");
 
         $em    = $this->get('doctrine.orm.entity_manager');
-        $dql   = "SELECT user FROM AppBundle:User user";
+        $dql   = "SELECT users FROM AppBundle:User users";
         $query = $em->createQuery($dql);
 
         $paginator  = $this->get('knp_paginator');
@@ -54,11 +33,20 @@ class AdminController extends Controller
             15
         );
 
-        return $this->render('@App/admin/user-manager.html.twig', array('users' => $users));
+        $deletedForms = [];
+        foreach ($users as $user) {
+            $deletedForms[$user->getId()] = $this->createDeleteUserForm($user)->createView();
+        }
+
+        return $this->render('@App/admin/user-manager.html.twig',
+            array(
+                'users' => $users,
+                'deletedForms' => $deletedForms
+            ));
     }
 
     /**
-     * @Route("/user-manager/create-user", name="create_user")
+     * @Route("/create-user", name="create_user", methods={"GET", "POST"})
      */
     public function createUserAction(Request $request)
     {
@@ -83,7 +71,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/user-manager/{id}/edit-user", name="edit_user")
+     * @Route("/{id}/edit-user", name="edit_user", methods={"GET", "POST"})
      */
     public function editUserAction(Request $request, User $user)
     {
@@ -102,6 +90,33 @@ class AdminController extends Controller
         return $this->render('@App/admin/edit-user.html.twig', array('userForm' => $form->createView()));
     }
 
+    /**
+     * @Route("/{id}/delete", name="delete_user", methods={"DELETE"})
+     */
+    public function deleteUserAction(Request $request, User $user)
+    {
+        $form = $this->createDeleteUserForm($user);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($user);
+            $em->flush();
+
+            $this->addFlash('info', sprintf('Управляющий "%s" был удален', $user->getUsername()));
+        }
+
+        return $this->redirectToRoute('user_manager');
+    }
+
+    private function createDeleteUserForm(User $user)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('delete_user', ['id' => $user->getId()]))
+            ->setMethod('DELETE')
+            ->getForm();
+    }
 
     private function getStartBreadcrumbs()
     {
