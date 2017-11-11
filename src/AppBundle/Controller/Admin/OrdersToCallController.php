@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Order;
+use AppBundle\Form\CreateEditOrderType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,6 +42,30 @@ class OrdersToCallController extends Controller
                 'orders' => $orders,
                 'deletedForms' => $deletedForms
             ));
+    }
+
+    /**
+     * @Route("/create-order", name="create_order", methods={"GET", "POST"})
+     */
+    public function createOrderAction(Request $request)
+    {
+        $breadcrumbs = $this->getStartBreadcrumbs();
+        $breadcrumbs->addItem("Управление заказами", $this->get("router")->generate("orders_to_call"));
+        $breadcrumbs->addItem("Создание заказа");
+
+        $order = new Order();
+        $form = $this->createForm(CreateEditOrderType::class, $order);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $order->setDateOrder(date('Y-m-d H:i:s'));
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($order);
+            $em->flush();
+
+            return $this->redirectToRoute('orders_to_call');
+        }
+
+        return $this->render('@App/admin/create-order.html.twig', array('orderForm' => $form->createView()));
     }
 
     private function createDeleteOrderForm(Order $order)

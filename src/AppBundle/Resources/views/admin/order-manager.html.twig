@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-    <a href="{{ path('create_user') }}" class="btn btn-default" style="float: right">Создать заказ</a>
+    <a href="{{ path('create_order') }}" class="btn btn-default" style="float: right">Создать заказ</a>
     <h2 class="sub-header">Управление заказами звонков</h2>
 
     {% for flashMessage in app.session.flashbag.get('info') %}
@@ -32,10 +32,10 @@
                 <th>{{ knp_pagination_sortable(orders, 'Id', 'orders.id') }}</th>
                 <th{% if orders.isSorted('orders.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(orders, 'Имя', 'orders.name') }}</th>
                 <th>{{ knp_pagination_sortable(orders, 'Телефон', 'orders.phone') }}</th>
-                <th>{{ knp_pagination_sortable(orders, 'Время звонка', 'orders.time_to_call') }}</th>
-                <th>{{ knp_pagination_sortable(orders, 'Город', 'orders.city') }}</th>
                 <th>{{ knp_pagination_sortable(orders, 'Описание', 'orders.description') }}</th>
                 <th>{{ knp_pagination_sortable(orders, 'Статус', 'orders.status') }}</th>
+                <th>{{ knp_pagination_sortable(orders, 'Время звонка', 'orders.time_to_call') }}</th>
+                <th>{{ knp_pagination_sortable(orders, 'Город', 'orders.city') }}</th>
                 <th>{{ knp_pagination_sortable(orders, 'Время подачи заявки', 'orders.date_order') }}</th>
                 <th>Действия</th>
             </tr>
@@ -46,10 +46,10 @@
                     <td>{{ order.id }}</td>
                     <td>{{ order.name }}</td>
                     <td>{{ order.phone }}</td>
-                    <td>{{ order.getTimeToCall() }}</td>
-                    <td>{{ order.city }}</td>
                     <td>{{ order.description }}</td>
                     <td>{{ order.status }}</td>
+                    <td>{{ order.getTimeToCall() }}</td>
+                    <td>{{ order.city }}</td>
                     <td>{{ order.getDateOrder()| date('Y-m-d H:i:s') }}</td>
                     <td>
                         <a class="btn btn-default" {#href="{{ path('edit_user', { 'id': order.id }) }}"#} title="Редактирование">
