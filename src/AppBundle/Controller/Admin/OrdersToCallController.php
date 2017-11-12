@@ -22,7 +22,7 @@ class OrdersToCallController extends Controller
         $breadcrumbs->addItem("Управление заказами звонков");
 
         $em    = $this->get('doctrine.orm.entity_manager');
-        $dql   = "SELECT orders FROM AppBundle:Order orders";
+        $dql   = "SELECT orders FROM AppBundle:Order orders ORDER BY orders.date_order DESC";
         $query = $em->createQuery($dql);
 
         $paginator  = $this->get('knp_paginator');
@@ -57,7 +57,7 @@ class OrdersToCallController extends Controller
         $form = $this->createForm(CreateEditOrderType::class, $order);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $order->setDateOrder(date('Y-m-d H:i:s'));
+            $order->setDateOrder(new \DateTime("now"));
             $em = $this->getDoctrine()->getManager();
             $em->persist($order);
             $em->flush();
@@ -68,10 +68,51 @@ class OrdersToCallController extends Controller
         return $this->render('@App/admin/create-order.html.twig', array('orderForm' => $form->createView()));
     }
 
+    /**
+     * @Route("/{id}/edit-order", name="edit_order", methods={"GET", "POST"})
+     */
+    public function editOrderAction(Request $request, Order $order)
+    {
+        $breadcrumbs = $this->getStartBreadcrumbs();
+        $breadcrumbs->addItem("Управление заказами", $this->get("router")->generate("orders_to_call"));
+        $breadcrumbs->addItem("Редактирование заказа номер - ".$order->getId());
+
+        $form = $this->createForm(CreateEditOrderType::class, $order);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            return $this->redirectToRoute('orders_to_call');
+        }
+
+        return $this->render('@App/admin/edit-order.html.twig', array('orderForm' => $form->createView()));
+    }
+
+    /**
+     * @Route("/{id}/delete", name="delete_order", methods={"DELETE"})
+     */
+    public function deleteUserAction(Request $request, Order $order)
+    {
+        $form = $this->createDeleteOrderForm($order);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash('info', sprintf('Заказ номер "%s" был удален', $order->getId()));
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($order);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('orders_to_call');
+    }
+
     private function createDeleteOrderForm(Order $order)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('delete_user', ['id' => $order->getId()]))
+            ->setAction($this->generateUrl('delete_order', ['id' => $order->getId()]))
             ->setMethod('DELETE')
             ->getForm();
     }

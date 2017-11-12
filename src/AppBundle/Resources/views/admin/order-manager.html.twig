@@ -47,12 +47,25 @@
                     <td>{{ order.name }}</td>
                     <td>{{ order.phone }}</td>
                     <td>{{ order.description }}</td>
-                    <td>{{ order.status }}</td>
-                    <td>{{ order.getTimeToCall() }}</td>
+                    {% if order.status  == 'Waiting for the call' %}
+                        <td style="color: orange">В ожидании звонка</td>
+                    {% elseif order.status  == 'Completed' %}
+                        <td style="color: green">Выполнен</td>
+                    {% else %}
+                        <td style="color: red">Недоступен</td>
+                    {% endif %}
+
+                    {% if order.getTimeToCall()  == 'Anytime' %}
+                        <td>В любое время</td>
+                    {% elseif order.getTimeToCall()  == 'Before noon' %}
+                        <td>С 9 до 13</td>
+                    {% else %}
+                        <td>С 14 до 18</td>
+                    {% endif %}
                     <td>{{ order.city }}</td>
                     <td>{{ order.getDateOrder()| date('Y-m-d H:i:s') }}</td>
                     <td>
-                        <a class="btn btn-default" {#href="{{ path('edit_user', { 'id': order.id }) }}"#} title="Редактирование">
+                        <a class="btn btn-default" href="{{ path('edit_order', { 'id': order.id }) }}" title="Редактирование">
                             <i class="glyphicon glyphicon-pencil" ></i> </a>
                         <a class="btn btn-default btn-delete" data-form = "{{ 'delete-form-'~order.id }}"{# href="{{ path('delete_user', { 'id': user.id }) }}" #}title="Удаление">
                             <i class="glyphicon glyphicon-trash"></i></a>
@@ -71,10 +84,10 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {#<script>#}
-        {#$('.btn-delete').on('click', function () {#}
-            {#var deleteForm = this.getAttribute('data-form');#}
-            {#$('#' + deleteForm).submit();#}
-        {#});#}
-    {#</script>#}
+    <script>
+        $('.btn-delete').on('click', function () {
+            var deleteForm = this.getAttribute('data-form');
+            $('#' + deleteForm).submit();
+        });
+    </script>
 {% endblock %}

@@ -1,0 +1,24 @@
+{% extends "@App/layout-admin.html.twig" %}
+
+{% block title %}Редактирование заказа{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <h2 class="sub-header">Редактирование заказа</h2>
+
+    {{ form_start(orderForm, {'attr' : {'class' : 'edit-form'}}) }}
+    {{ form_row(orderForm.name) }}
+    {{ form_row(orderForm.phone) }}
+    {{ form_row(orderForm.description) }}
+    {{ form_row(orderForm.status) }}
+    {{ form_row(orderForm.time_to_call) }}
+    {{ form_row(orderForm.city) }}
+
+    <button type="submit" class="btn control-buttons" formnovalidate>{% trans %}Сохранить{% endtrans %}</button>
+    <button type="button" class="btn btn-danger control-buttons" onclick="history.back(-1)">{% trans %}Отмена{% endtrans %}</button>
+    {{ form_end(orderForm) }}
+
+{% endblock %}

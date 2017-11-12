@@ -23,7 +23,7 @@ class UserManagerController extends Controller
         $breadcrumbs->addItem("Управление пользователями");
 
         $em    = $this->get('doctrine.orm.entity_manager');
-        $dql   = "SELECT users FROM AppBundle:User users";
+        $dql   = "SELECT users FROM AppBundle:User users WHERE users.username <> 'superadmin'";
         $query = $em->createQuery($dql);
 
         $paginator  = $this->get('knp_paginator');

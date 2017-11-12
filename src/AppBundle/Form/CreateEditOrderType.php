@@ -28,7 +28,7 @@ class CreateEditOrderType extends AbstractType
             ->add('phone', TextType::class, [
                 'label' => 'Телефон',
                 'required' => true,
-                'data' => '+375 ',
+                'data' => ($options['data']->getPhone() != null) ? $options['data']->getPhone() : '+375 ',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Пожалуйста заполните это поле',
@@ -88,6 +88,7 @@ class CreateEditOrderType extends AbstractType
                 'novalidate' => 'novalidate'
             ],
             'validation_groups' => function (FormInterface $form) {
+
                 return ['order'];
             }
         ]);
