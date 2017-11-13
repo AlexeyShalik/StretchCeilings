@@ -4,8 +4,41 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/css/plugin-speedometer-experiment.css') }}" type="text/css" />
 {% endblock %}
 
 {% block content %}
         <h2 class="sub-header">Статистика</h2>
+        <div id="Common" data-value={{ counts.Common }}>
+            Всего заказов {{ counts.Common }}
+        </div>
+        <div class="col-xs-6 col-md-4">
+            <div id="Completed" class="el" data-value="{{ counts.Completed }}">
+                <span class="needle"></span>
+            </div>
+            <p style="color: green; text-align: center; font-size:large">Выполнено</p>
+        </div>
+        <div class="col-xs-6 col-md-4">
+            <div id="Waiting-for-the-call" class="el" data-value="{{ counts['Waiting for the call'] }}">
+                <span class="needle"></span>
+            </div>
+            <p style="color: orange; text-align: center; font-size:large">В ожидании звонка</p>
+        </div>
+        <div class="col-xs-6 col-md-4">
+            <div id="Not-available" class="el" data-value="{{ counts['Not available'] }}">
+                <span class="needle"></span>
+            </div>
+            <p style="color: red; text-align: center; font-size:large">Недоступны</p>
+        </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var common = $('#Common');
+        var average = 180/common.data('value');
+        $('#Completed').children().css('transform', 'rotate(' + average * $('#Completed').attr('data-value') + 'deg)');
+        $('#Waiting-for-the-call').children().css('transform', 'rotate(' + average * $('#Waiting-for-the-call').attr('data-value') + 'deg)');
+        $('#Not-available').children().css('transform', 'rotate(' + average * $('#Not-available').attr('data-value') + 'deg)');
+    </script>
 {% endblock %}

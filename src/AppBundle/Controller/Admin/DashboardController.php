@@ -27,6 +27,17 @@ class DashboardController extends Controller
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addItem("Статистика");
 
-        return $this->render('@App/admin/dashboard.html.twig');
+        $em    = $this->get('doctrine.orm.entity_manager');
+        $dql   = "SELECT COUNT(orders), orders.status FROM AppBundle:Order orders GROUP BY orders.status";
+        $result  = $em->createQuery($dql)->getResult();
+        $counts = array('Common' => 0);
+        foreach ($result as $countStatus)
+        {
+            $counts[$countStatus['status']] = $countStatus[1];
+            $counts['Common'] += $countStatus[1];
+        }
+
+        return $this->render('@App/admin/dashboard.html.twig',
+            array('counts' => $counts));
     }
 }

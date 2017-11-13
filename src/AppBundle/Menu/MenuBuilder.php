@@ -43,4 +43,53 @@ class MenuBuilder implements ContainerAwareInterface
             );
         return $menu;
     }
+
+    public function frontMenu(FactoryInterface $factory)
+    {
+        $menu = $factory->createItem('Home', array('childrenAttributes' => array('class' => 'nav navbar-nav')));
+        $menu
+            ->addChild(
+                'Главная',
+                array(
+                    'uri' => '#')
+            );
+        $menu
+            ->addChild(
+                'Каталог',
+                array(
+                    'uri' => '#')
+            );
+        $menu
+            ->addChild(
+                'Наши работы',
+                array(
+                    'uri' => '#')
+            );
+        $menu
+            ->addChild(
+                'Калькулятор цен',
+                array(
+                    'uri' => '#')
+            );
+        $menu
+            ->addChild(
+                'Заказать звонок',
+                array(
+                    'uri' => '#')
+            );
+        $menu
+            ->addChild(
+                'О нас',
+                array(
+                    'uri' => '#')
+            );
+        $menu
+            ->addChild(
+                'Контакты',
+                array(
+                    'uri' => '#')
+            );
+
+        return $menu;
+    }
 }
