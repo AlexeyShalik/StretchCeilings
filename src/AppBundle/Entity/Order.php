@@ -19,8 +19,7 @@ class Order
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $name;
 
@@ -31,13 +30,12 @@ class Order
     protected $phone;
 
     /**
-     * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $time_to_call;
 
     /**
-     * @ORM\Column(type="string", length=300)
+     * @ORM\Column(type="string", length=300, nullable=true)
      */
     protected $description;
 
@@ -52,7 +50,7 @@ class Order
     protected $status;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $city;
 

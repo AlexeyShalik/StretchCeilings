@@ -55,12 +55,12 @@
                         <td style="color: red">Недоступен</td>
                     {% endif %}
 
-                    {% if order.getTimeToCall()  == 'Anytime' %}
-                        <td>В любое время</td>
+                    {% if order.getTimeToCall()  == 'After noon' %}
+                        <td>С 14 до 18</td>
                     {% elseif order.getTimeToCall()  == 'Before noon' %}
                         <td>С 9 до 13</td>
                     {% else %}
-                        <td>С 14 до 18</td>
+                        <td>В любое время</td>
                     {% endif %}
                     <td>{{ order.city }}</td>
                     <td>{{ order.getDateOrder()| date('Y-m-d H:i:s') }}</td>

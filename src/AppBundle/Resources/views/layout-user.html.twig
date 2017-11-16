@@ -4,12 +4,14 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/css/bootstrap-social.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('bundles/css/font-awesome.css') }}" type="text/css" />
     <style>
         body {
             font: 16px 'Segoe UI', arial;
             z-index: 99;
         }
-        .navbar-nav>li{
+        .navbar-nav > li{
             float:none!important;
             display: table-cell;
         }
@@ -20,18 +22,100 @@
         #menu .nav > li > a{
             text-align:center;
         }
+        .navbar {
+            z-index: 99;
+        }
         .popup {
-            position: fixed;
+            position: fixed !important;
             top: 30%;
             left: 20%;
             border: solid 0.5px black;
             height: 300px;
             width: 60%;
             border-radius: 10px;
-            z-index: 100;
+            z-index: 10000 !important;
+            background: linear-gradient(to bottom, white, white, white, #f7f7f7);
         }
         .fluir{
             z-index: 99;
+        }
+        .close{
+            float: right;
+            padding-top: 10px
+        }
+
+        #call-me {
+            z-index: 100;
+        }
+
+        .map {
+            border-bottom: 5px solid rgba(0,0,0,0.2);
+            border-radius:10px;
+            position: absolute;
+            left:50%;
+            top:15%;
+            background-color: #c9004c;
+        }
+        .map img{
+            border-radius:10px;
+            border-bottom: 5px solid rgba(0,0,0,0.2);
+        }
+
+        .info-map {
+            height: 300px;
+            width: 450px;
+            z-index: 99;
+            background-color: #c9004c;
+            position: absolute;
+            top: 25%;
+            left: 7%;
+            border-radius: 10px;
+        }
+
+        .info-map:hover {
+            transition: 3s;
+            background-color: #c9004c;
+        }
+
+        .info-map p {
+            margin-top: 30px;
+            font-size: 22px;
+        }
+
+        .block-map {
+            height: 650px;
+            background-image: url({{ asset('bundles/image/i.png') }});
+            position: relative;
+            z-index: 99;
+            text-align: center;
+            color: white;
+            font-family: Helvetica, sans-serif;
+            font-size: 40px;
+        }
+        .title-map {
+            text-shadow: 1px 1px 0 #c9004c,
+            2px 2px 0 #c9004c,
+            3px 3px 0 #c9004c,
+            4px 4px 0 #c9004c,
+            5px 5px 0 #c9004c,
+            6px 6px 0 #c9004c,
+            7px 7px 0 #c9004c,
+            8px 8px 0 #c9004c;
+
+        }
+        footer {
+            /*opacity: 0.9;*/
+            background-color: black;
+            height: 300px;
+            color: white;
+            font-family: Helvetica, sans-serif;
+            font-size: 22px;
+            text-align: center;
+            /*padding-top: 10px;*/
+        }
+
+        .contact {
+            padding-top: 80px;
         }
     </style>
 {% endblock %}
@@ -39,16 +123,9 @@
 {% block body %}
     <div class="fluir">
         <header>
-            <div class="header row" style="height: 100px; border-bottom:solid 0.5px black;">
+            <div class="header row" style="height: 100px; width: 101%; border-bottom:solid 0.5px black;">
                 <div class="col-md-6" style="height: 100px; position: relative">
-                    <img style="height: 50px; width: 42px; position:absolute; bottom:1px;" src="{{ asset('/bundles/image/snowman.png') }}" />
                     <h2 style="padding-left: 200px; padding-top: 10px">Натяжные потолки</h2>
-                    <img
-                            style="height: 40px; width: 40px; position:absolute; top:58px; left: 392px;"
-                            src="{{ asset('/bundles/image/esphere.png') }}" />
-                    <img
-                            style="height: 40px; width: 200px; position:absolute; top:2px; left: 255px;"
-                            src="{{ asset('/bundles/image/2.png') }}" />
                 </div>
                 <div class="col-md-4" style="height: 100px; padding: 25px">
                     <p style="text-align: centere"><i class="glyphicon glyphicon-time"></i>   Время работы: пн-вс 09:00-21:00</p>
@@ -73,95 +150,72 @@
             style="transform: rotate(-90deg); position: fixed; right: -50px; top:50%">
                 Заказать звонок <i class="glyphicon glyphicon-earphone"></i></a>
         </div>
-        <div class="container-fluid">
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
-            <p>qqqqqqqqqqqqqqqqqqqqqqq</p>
+
+        {% block content %}{% endblock %}
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img style="height: 300px" src="{{ asset('bundles/image/footer.jpg') }}">
+                    </div>
+                    <div class="col-md-4 contact">
+                        Наши контакты<br><br>
+                        <i class="glyphicon glyphicon-phone-alt"></i>
+                        +375 29 500 06 00<br>
+                        <i class="glyphicon glyphicon-phone"></i>
+                        +375 29 500 06 00<br>
+                        <i class="glyphicon glyphicon-earphone"></i>
+                        +375 29 500 06 00
+
+                    </div>
+                    <div class="col-md-4 contact" >
+                        Наши аккаунты в социальных сетях:<br><br>
+                        <a class="btn btn-social-icon btn-twitter">
+                            <span class="fa fa-twitter"></span>
+                        </a>
+                        <a class="btn btn-social-icon btn-instagram">
+                            <span class="fa fa-instagram"></span>
+                        </a>
+                        <a class="btn btn-social-icon btn-vk">
+                            <span class="fa fa-vk"></span>
+                        </a>
+                        <a class="btn btn-social-icon btn-facebook">
+                            <span class="fa fa-facebook"></span>
+                        </a>
+                        <a class="btn btn-social-icon btn-odnoklassniki">
+                            <span class="fa fa-odnoklassniki"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="popup row" hidden>
+        <div class="col-md-6">
+            <img style="height:253px; width: 320px; position: relative; bottom: -45px; left: 10px" src="{{ asset('bundles/image/phone.jpg') }}">
+        </div>
+        <div class="col-md-6">
+            <i class="glyphicon glyphicon-remove close"></i>
+            <p style="font-size: large;  margin-top: 20px"><strong>Закажите звонок и наш менеджер вам позвонит</strong></p>
+            {{ form_start(callMeForm, {'attr' : {'class' : 'edit-form', 'autocomplete' : 'off'}}) }}
+                {{ form_row(callMeForm.phone) }}
+                {{ form_row(callMeForm.description) }}
+                <button type="submit" class="btn control-buttons" >Позвонить</button><span style="color: red;"> Звонок <strong>БЕСПЛАТНЫЙ</strong></span>
+            {{ form_end(callMeForm) }}
         </div>
     </div>
-    <div class="popup" hidden>
-        <i class="glyphicon glyphicon-remove close" style="float: right; padding-right: 15px; padding-top: 10px"></i>
-    </div>
-    {% block content %}{% endblock %}
+
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('bundles/js/jquery.maskedinput.min.js') }}"></script>
     <script>
         //for scroll menu
         var navbar = $('.navbar');
-        var navbarBottom = navbar.offset().top + navbar.height();
+        var navbarBottom = navbar.offset().top;
         window.onscroll = function() {
             if (navbar.hasClass('navbar-fixed-top') && window.pageYOffset < navbarBottom) {
                 navbar.addClass('navbar-static-top');
@@ -185,6 +239,8 @@
         close.on('click', function () {
             $('.fluir').css('filter', 'blur(0px)');
             popup.attr('hidden', 'hidden');
-        })
+        });
+
+        $('.phone').mask("+375 (99) 999-99-99");
     </script>
 {% endblock %}
