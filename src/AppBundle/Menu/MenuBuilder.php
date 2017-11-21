@@ -57,7 +57,7 @@ class MenuBuilder implements ContainerAwareInterface
             ->addChild(
                 'Каталог',
                 array(
-                    'uri' => '#')
+                    'uri' => '#catalog')
             );
         $menu
             ->addChild(
@@ -75,19 +75,26 @@ class MenuBuilder implements ContainerAwareInterface
             ->addChild(
                 'Заказать звонок',
                 array(
-                    'uri' => '#')
+                    'uri' => '#',
+                    'attributes' => array('class' => 'call-me'))
             );
         $menu
             ->addChild(
                 'О нас',
                 array(
-                    'uri' => '#')
+                    'uri' => '#about-us')
+            );
+        $menu
+            ->addChild(
+                'Наши магазины',
+                array(
+                    'uri' => '#map')
             );
         $menu
             ->addChild(
                 'Контакты',
                 array(
-                    'uri' => '#')
+                    'uri' => '#contact')
             );
 
         return $menu;

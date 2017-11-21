@@ -6,6 +6,7 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/css/bootstrap-social.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('bundles/css/font-awesome.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('bundles/css/catalog.css') }}" type="text/css" />
     <style>
         body {
             font: 16px 'Segoe UI', arial;
@@ -23,7 +24,7 @@
             text-align:center;
         }
         .navbar {
-            z-index: 99;
+            z-index: 100;
         }
         .popup {
             position: fixed !important;
@@ -46,63 +47,33 @@
 
         #call-me {
             z-index: 100;
+            display: inline-block;
+            color: #777674;
+            font-weight: bold;
+            text-decoration: none;
+            text-shadow: rgba(255,255,255,.5) 1px 1px, rgba(100,100,100,.3) 3px 7px 3px;
+            user-select: none;
+            padding: 1em 2em;
+            outline: none;
+            border-radius: 3px / 100%;
+            background-image:
+                    linear-gradient(45deg, rgba(255,255,255,.0) 30%, rgba(255,255,255,.8), rgba(255,255,255,.0) 70%),
+                    linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0) 20%, rgba(255,255,255,0) 90%, rgba(255,255,255,.3)),
+                    linear-gradient(to right, rgba(125,125,125,1), rgba(255,255,255,.9) 45%, rgba(125,125,125,.5)),
+                    linear-gradient(to right, rgba(125,125,125,1), rgba(255,255,255,.9) 45%, rgba(125,125,125,.5)),
+                    linear-gradient(to right, rgba(223,190,170,1), rgba(255,255,255,.9) 45%, rgba(223,190,170,.5)),
+                    linear-gradient(to right, rgba(223,190,170,1), rgba(255,255,255,.9) 45%, rgba(223,190,170,.5));
+            background-repeat: no-repeat;
+            background-size: 200% 100%, auto, 100% 2px, 100% 2px, 100% 1px, 100% 1px;
+            background-position: 200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
+            box-shadow: rgba(0,0,0,.5) 3px 10px 10px -10px;
+        }
+        #call-me:hover {
+            transition: .5s linear;
+            background-position: -200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
         }
 
-        .map {
-            border-bottom: 5px solid rgba(0,0,0,0.2);
-            border-radius:10px;
-            position: absolute;
-            left:50%;
-            top:15%;
-            background-color: #c9004c;
-        }
-        .map img{
-            border-radius:10px;
-            border-bottom: 5px solid rgba(0,0,0,0.2);
-        }
 
-        .info-map {
-            height: 300px;
-            width: 450px;
-            z-index: 99;
-            background-color: #c9004c;
-            position: absolute;
-            top: 25%;
-            left: 7%;
-            border-radius: 10px;
-        }
-
-        .info-map:hover {
-            transition: 3s;
-            background-color: #c9004c;
-        }
-
-        .info-map p {
-            margin-top: 30px;
-            font-size: 22px;
-        }
-
-        .block-map {
-            height: 650px;
-            background-image: url({{ asset('bundles/image/i.png') }});
-            position: relative;
-            z-index: 99;
-            text-align: center;
-            color: white;
-            font-family: Helvetica, sans-serif;
-            font-size: 40px;
-        }
-        .title-map {
-            text-shadow: 1px 1px 0 #c9004c,
-            2px 2px 0 #c9004c,
-            3px 3px 0 #c9004c,
-            4px 4px 0 #c9004c,
-            5px 5px 0 #c9004c,
-            6px 6px 0 #c9004c,
-            7px 7px 0 #c9004c,
-            8px 8px 0 #c9004c;
-
-        }
         footer {
             /*opacity: 0.9;*/
             background-color: black;
@@ -117,6 +88,11 @@
         .contact {
             padding-top: 80px;
         }
+
+        header {
+            background: linear-gradient(to bottom, white, white, white, #f7f7f7);
+        }
+
     </style>
 {% endblock %}
 
@@ -124,11 +100,14 @@
     <div class="fluir">
         <header>
             <div class="header row" style="height: 100px; width: 101%; border-bottom:solid 0.5px black;">
-                <div class="col-md-6" style="height: 100px; position: relative">
+                <div class="col-md-5" style="height: 100px; position: relative">
+                    <p style="z-index:99; position: absolute; left: 147px; bottom: 40px;">логотип</p>
+                    <img style="position: absolute; left: 135px; bottom: 1px; height:80px; width: 80px" src="{{ asset('bundles/image/logotype.jpg') }}">
                     <h2 style="padding-left: 200px; padding-top: 10px">Натяжные потолки</h2>
                 </div>
-                <div class="col-md-4" style="height: 100px; padding: 25px">
-                    <p style="text-align: centere"><i class="glyphicon glyphicon-time"></i>   Время работы: пн-вс 09:00-21:00</p>
+                <div class="col-md-5" style="height: 100px; padding-top: 15px;text-align: center">
+                    <p style="color: #c9004c; font-size: 22px">Работаем по всей Минской Области</p>
+                    <p><i class="glyphicon glyphicon-time"></i>   Время работы: пн-вс 09:00-18:00</p>
                 </div>
                 <div class="col-md-2" style="height: 100px; padding-top: 15px">
                     <p><img style="height:24px; width: 32px" src="{{ asset('bundles/image/velcom_logo.png') }}"> +375 29 500 06 00</p>
@@ -146,14 +125,14 @@
         </nav>
 
         <div class="container-fluid">
-            <a class="btn btn-default" id="call-me"
-            style="transform: rotate(-90deg); position: fixed; right: -50px; top:50%">
+            <a class="btn btn-default call-me" id="call-me"
+            style=" position: fixed; right:2%; bottom:7%">
                 Заказать звонок <i class="glyphicon glyphicon-earphone"></i></a>
         </div>
 
         {% block content %}{% endblock %}
 
-        <footer class="footer">
+        <footer class="footer" id="contact">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-4">
@@ -212,6 +191,7 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('bundles/js/jquery.maskedinput.min.js') }}"></script>
+    <script src="{{ asset('bundles/js/jssor.slider.min.js') }}"></script>
     <script>
         //for scroll menu
         var navbar = $('.navbar');
@@ -227,7 +207,7 @@
         };
 
         //for popup call
-        var callMe = $('#call-me');
+        var callMe = $('.call-me');
         var close = $('.close');
         var popup = $('.popup');
 
@@ -242,5 +222,56 @@
         });
 
         $('.phone').mask("+375 (99) 999-99-99");
+
+
+//    slider
+        jQuery(document).ready(function ($) {
+            var options = {
+                $AutoPlay: 1,
+                $AutoPlaySteps: 1,
+                $Idle: 3000,
+                $PauseOnHover: 1,
+                $ArrowKeyNavigation: 1,
+                $SlideEasing: $Jease$.$OutQuint,
+                $SlideDuration: 1200,
+                $MinDragOffsetToSlide: 20,
+                $SlideSpacing: 0,
+                $Cols: 1,
+                $Align: 0,
+                $UISearchMode: 1,
+                $PlayOrientation: 1,
+                $DragOrientation: 1,
+
+                $ArrowNavigatorOptions: {
+                    $Class: $JssorArrowNavigator$,
+                    $ChanceToShow: 2,
+                    $Steps: 1
+                },
+
+                $BulletNavigatorOptions: {
+                    $Class: $JssorBulletNavigator$,
+                    $ChanceToShow: 2,
+                    $Steps: 1,
+                    $Rows: 1,
+                    $SpacingX: 12,
+                    $Orientation: 1
+                }
+            };
+
+            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+            function ScaleSlider() {
+                var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
+                if (parentWidth) {
+                    jssor_slider1.$ScaleWidth(parentWidth - 30);
+                }
+                else
+                    window.setTimeout(ScaleSlider, 30);
+            }
+            ScaleSlider();
+
+            $(window).bind("load", ScaleSlider);
+            $(window).bind("resize", ScaleSlider);
+            $(window).bind("orientationchange", ScaleSlider);
+        });
     </script>
 {% endblock %}
