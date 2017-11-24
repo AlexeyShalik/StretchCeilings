@@ -7,99 +7,13 @@
     <link rel="stylesheet" href="{{ asset('bundles/css/bootstrap-social.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('bundles/css/font-awesome.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('bundles/css/catalog.css') }}" type="text/css" />
-    <style>
-        body {
-            font: 16px 'Segoe UI', arial;
-            z-index: 99;
-        }
-        .navbar-nav > li{
-            float:none!important;
-            display: table-cell;
-        }
-        .navbar-nav {
-            display: table;
-            width: 100%;
-        }
-        #menu .nav > li > a{
-            text-align:center;
-        }
-        .navbar {
-            z-index: 100;
-        }
-        .popup {
-            position: fixed !important;
-            top: 30%;
-            left: 20%;
-            border: solid 0.5px black;
-            height: 300px;
-            width: 60%;
-            border-radius: 10px;
-            z-index: 10000 !important;
-            background: linear-gradient(to bottom, white, white, white, #f7f7f7);
-        }
-        .fluir{
-            z-index: 99;
-        }
-        .close{
-            float: right;
-            padding-top: 10px
-        }
-
-        #call-me {
-            z-index: 100;
-            display: inline-block;
-            color: #777674;
-            font-weight: bold;
-            text-decoration: none;
-            text-shadow: rgba(255,255,255,.5) 1px 1px, rgba(100,100,100,.3) 3px 7px 3px;
-            user-select: none;
-            padding: 1em 2em;
-            outline: none;
-            border-radius: 3px / 100%;
-            background-image:
-                    linear-gradient(45deg, rgba(255,255,255,.0) 30%, rgba(255,255,255,.8), rgba(255,255,255,.0) 70%),
-                    linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0) 20%, rgba(255,255,255,0) 90%, rgba(255,255,255,.3)),
-                    linear-gradient(to right, rgba(125,125,125,1), rgba(255,255,255,.9) 45%, rgba(125,125,125,.5)),
-                    linear-gradient(to right, rgba(125,125,125,1), rgba(255,255,255,.9) 45%, rgba(125,125,125,.5)),
-                    linear-gradient(to right, rgba(223,190,170,1), rgba(255,255,255,.9) 45%, rgba(223,190,170,.5)),
-                    linear-gradient(to right, rgba(223,190,170,1), rgba(255,255,255,.9) 45%, rgba(223,190,170,.5));
-            background-repeat: no-repeat;
-            background-size: 200% 100%, auto, 100% 2px, 100% 2px, 100% 1px, 100% 1px;
-            background-position: 200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
-            box-shadow: rgba(0,0,0,.5) 3px 10px 10px -10px;
-        }
-        #call-me:hover {
-            transition: .5s linear;
-            background-position: -200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
-        }
-
-
-        footer {
-            /*opacity: 0.9;*/
-            background-color: black;
-            height: 300px;
-            color: white;
-            font-family: Helvetica, sans-serif;
-            font-size: 22px;
-            text-align: center;
-            /*padding-top: 10px;*/
-        }
-
-        .contact {
-            padding-top: 80px;
-        }
-
-        header {
-            background: linear-gradient(to bottom, white, white, white, #f7f7f7);
-        }
-
-    </style>
+    <link rel="stylesheet" href="{{ asset('bundles/css/layout-user.css') }}" type="text/css" />
 {% endblock %}
 
 {% block body %}
     <div class="fluir">
         <header>
-            <div class="header row" style="height: 100px; width: 101%; border-bottom:solid 0.5px black;">
+            <div class="header row">
                 <div class="col-md-5" style="height: 100px; position: relative">
                     <p style="z-index:99; position: absolute; left: 147px; bottom: 40px;">логотип</p>
                     <img style="position: absolute; left: 135px; bottom: 1px; height:80px; width: 80px" src="{{ asset('bundles/image/logotype.jpg') }}">
@@ -233,11 +147,13 @@
                 $PauseOnHover: 1,
                 $ArrowKeyNavigation: 1,
                 $SlideEasing: $Jease$.$OutQuint,
-                $SlideDuration: 1200,
+                $SlideDuration: 1250,
                 $MinDragOffsetToSlide: 20,
                 $SlideSpacing: 0,
                 $Cols: 1,
                 $Align: 0,
+                $SlideWidth: 1300,
+                $SlideHeight: 650,
                 $UISearchMode: 1,
                 $PlayOrientation: 1,
                 $DragOrientation: 1,
@@ -262,7 +178,7 @@
             function ScaleSlider() {
                 var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
                 if (parentWidth) {
-                    jssor_slider1.$ScaleWidth(parentWidth - 30);
+                    jssor_slider1.$ScaleWidth(parentWidth + 30);
                 }
                 else
                     window.setTimeout(ScaleSlider, 30);

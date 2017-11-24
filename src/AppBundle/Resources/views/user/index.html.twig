@@ -9,17 +9,17 @@
             position: absolute;
             left: 0px;
             top: 0px;
-            width: 1140px;
-            height: 442px;
+            width: 1250px;
+            height: 500px;
             overflow: hidden;
         }
 
         #slider1_container {
             visibility: hidden;
             position: relative;
-            margin: 0 auto;
-            width: 1140px;
-            height: 442px;
+            margin: -20px;
+            width: 1250px;
+            height: 500px;
             overflow: hidden;
         }
         .transparent {
@@ -41,9 +41,6 @@
             margin-right: 65px
         }
 
-        .about-us {
-            height: 300px;
-        }
         .about-us > h2{
             text-align: center;
             margin-bottom: 50px
@@ -53,6 +50,12 @@
             position: absolute;
             text-align: center;
         }
+
+        .about-us {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
         .circumference {
             height: 40px;
             width: 40px;
@@ -122,54 +125,61 @@
         .dot .iav .b {fill:#fff;stroke:#000;fill-opacity:1;}
         .dot .i.idn {opacity:0.3;}
 
+        .table-about-us tr > th {
+            padding: 10px;
+        }
+
+        .pulse {
+            background-image: url({{ asset('bundles/image/pulse1.png') }});
+            background-repeat:repeat-x;
+        }
     </style>
 {% endblock %}
 
 {% block content %}
 
 
-    <div class="container-fluid">
+    <div id="slider1_container">
 
-        <div id="slider1_container">
-
-            <!-- Slides Container -->
-            <div u="slides" class="slider">
-                <div>
-                    <img data-u="image" src="{{ asset('bundles/image/test-slider-image/001.jpg') }}" />
-                </div>
-                <div>
-                    <img data-u="image" src="{{ asset('bundles/image/test-slider-image/002.jpg') }}" />
-                </div>
-                <div>
-                    <img data-u="image" src="{{ asset('bundles/image/test-slider-image/003.jpg') }}" />
-                </div>
-                <div>
-                    <img data-u="image" src="{{ asset('bundles/image/test-slider-image/004.jpg') }}" />
-                </div>
+        <!-- Slides Container -->
+        <div u="slides" class="slider">
+            <div>
+                <img data-u="image" src="{{ asset('bundles/image/test-slider-image/001.jpg') }}" />
             </div>
-
-
-            <div data-u="navigator" class="dot" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
-                <div data-u="prototype" class="i" style="width:16px;height:16px;">
-                    <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
-                        <circle class="b" cx="8000" cy="8000" r="5800"></circle>
-                    </svg>
-                </div>
+            <div>
+                <img data-u="image" src="{{ asset('bundles/image/test-slider-image/002.jpg') }}" />
             </div>
+            <div>
+                <img data-u="image" src="{{ asset('bundles/image/test-slider-image/003.jpg') }}" />
+            </div>
+            <div>
+                <img data-u="image" src="{{ asset('bundles/image/test-slider-image/004.jpg') }}" />
+            </div>
+        </div>
 
 
-            <div data-u="arrowleft" class="arrow" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+        <div data-u="navigator" class="dot" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+            <div data-u="prototype" class="i" style="width:16px;height:16px;">
                 <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
-                    <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
-                </svg>
-            </div>
-            <div data-u="arrowright" class="arrow" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
-                <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
-                    <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
                 </svg>
             </div>
         </div>
+
+
+        <div data-u="arrowleft" class="arrow" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+            <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+            </svg>
+        </div>
+        <div data-u="arrowright" class="arrow" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+            <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+            </svg>
+        </div>
     </div>
+    <br>
+    <br>
 
 
     <div class="catalog" id="catalog">
@@ -260,80 +270,86 @@
         </div>
     </div>
 
+    <div class="container">
+        <p  class="pulse">w</p>
+    </div>
+
     <div class="about-us container" id="about-us">
         <h2>О нас</h2>
         <div class="row">
             <div class="col-md-1"></div>
-            <div class="col-md-1 about-us-round" style="background-color: #f96f4a;">
-                <img class="transparent" src="{{ asset('bundles/image/transparent.png') }}">
-                <img class="circumference" src="{{ asset('bundles/image/circumference.png') }}">
-                <span style="left: 65px; top: 20px">
-                    5
-                </span>
-                <p style="top: 45%; left: 53px;">
-                    <strong>ЛЕТ</strong>
-                </p>
-                <p style="top: 65%; left: 35px;">
-                    На рынке
-                </p>
-            </div>
-
-            <div class="col-md-1 about-us-round" style="background-color: #31ba00;">
-                <img class="transparent" src="{{ asset('bundles/image/transparent.png') }}">
-                <img class="circumference" src="{{ asset('bundles/image/circumference.png') }}">
-                <span style="left: 65px; top: 20px">
-                    5
-                </span>
-                <p style="top: 45%; left: 53px;">
-                    <strong>ЛЕТ</strong>
-                </p>
-                <p style="top: 65%;left:36px;">
-                    Гарантии
-                </p>
-            </div>
-
-            <div class="col-md-1 about-us-round" style="background-color: #eb88ba;">
-                <img class="transparent" src="{{ asset('bundles/image/transparent.png') }}">
-                <img class="circumference" src="{{ asset('bundles/image/circumference.png') }}">
-                <span style="left: 65px; top: 20px">
-                    5
-                </span>
-                <p style="top: 45%; left: 62px;">
-                    <strong>%</strong>
-                </p>
-                <p style="top: 65%; left: 42px;">
-                    Скидка
-                </p>
-            </div>
-
-            <div class="col-md-1 about-us-round" style="background-color: #5d9fc9;">
-                <img class="transparent" src="{{ asset('bundles/image/transparent.png') }}">
-                <img class="circumference" src="{{ asset('bundles/image/circumference.png') }}">
-                <span style="left: 61px; top: 20px">
-                    99
-                </span>
-                <p style="top: 45%; left: 62px;">
-                    <strong>%</strong>
-                </p>
-                <p style="top: 60%; left: 8px;">
-                    Довольных клиентов
-                </p>
-            </div>
-
-            <div class="col-md-1 about-us-round" style="background-color: green;">
-                <img class="transparent" src="{{ asset('bundles/image/transparent.png') }}">
-                <img class="circumference" src="{{ asset('bundles/image/circumference.png') }}">
-                <span style="left: 65px; top: 20px">
-                    2
-                </span>
-                <p style="top: 45%; left: 30px;">
-                    <strong>БРИГАДЫ</strong>
-                </p>
-                <p style="top: 65%; left: 18px;">
-                    Монтажников
-                </p>
-            </div>
-            <div class="col-md-1"></div>
+            <table class="table-about-us">
+                <tr>
+                    <th>
+                        <div class="about-us-round" style="background-color: #f96f4a;">
+                            <img class="transparent" src="{{ asset('bundles/image/transparent.png') }}">
+                            <img class="circumference" src="{{ asset('bundles/image/circumference.png') }}">
+                            <span style="left: 65px; top: 20px">5</span>
+                            <p style="top: 45%; left: 53px;"><strong>ЛЕТ</strong></p>
+                            <p style="top: 65%; left: 31px;">На рынке</p>
+                        </div>
+                    </th>
+                    <th>
+                        <p style="font-size:xx-large"><span style="color: #f96f4a">Н</span>а рынке <span style="color: #f96f4a">5</span> лет</p>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <div class="about-us-round" style="background-color: #31ba00;">
+                            <img class="transparent" src="{{ asset('bundles/image/transparent.png') }}">
+                            <img class="circumference" src="{{ asset('bundles/image/circumference.png') }}">
+                            <span style="left: 60px; top: 20px">10</span>
+                            <p style="top: 45%; left: 53px;"><strong>ЛЕТ</strong></p>
+                            <p style="top: 65%;left:33px;">Гарантии</p>
+                        </div>
+                    </th>
+                    <th>
+                        <p style="font-size:xx-large"><span style="color: #f96f4a">Г</span>арантия от производителя <span style="color: #f96f4a">10</span> лет</p>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <div class="about-us-round" style="background-color: #eb88ba;">
+                            <img class="transparent" src="{{ asset('bundles/image/transparent.png') }}">
+                            <img class="circumference" src="{{ asset('bundles/image/circumference.png') }}">
+                            <span style="left: 65px; top: 20px">5</span>
+                            <p style="top: 45%; left: 60px;"><strong>%</strong></p>
+                            <p style="top: 65%; left: 38px;">Скидка</p>
+                        </div>
+                    </th>
+                    <th>
+                        <p style="font-size:xx-large"><span style="color: #f96f4a">С</span>кидка <span style="color: #f96f4a">5%</span> при заказе всей квартиры</p>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <div class="about-us-round" style="background-color: #5d9fc9;">
+                            <img class="transparent" src="{{ asset('bundles/image/transparent.png') }}">
+                            <img class="circumference" src="{{ asset('bundles/image/circumference.png') }}">
+                            <span style="left: 60px; top: 20px">99</span>
+                            <p style="top: 45%; left: 60px;"><strong>%</strong></p>
+                            <p style="top: 60%; left: 4px;">Довольных клиентов</p>
+                        </div>
+                    </th>
+                    <th>
+                        <p style="font-size:xx-large"><span style="color: #f96f4a">99%</span> наших клиентов довольны нашей работой</p>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <div class="about-us-round" style="background-color: green;">
+                            <img class="transparent" src="{{ asset('bundles/image/transparent.png') }}">
+                            <img class="circumference" src="{{ asset('bundles/image/circumference.png') }}">
+                            <span style="left: 65px; top: 20px">2</span>
+                            <p style="top: 45%; left: 30px;"><strong>БРИГАДЫ</strong></p>
+                            <p style="top: 65%; left: 11px;">Монтажников</p>
+                        </div>
+                    </th>
+                    <th>
+                        <p style="font-size:xx-large"><span style="color: #f96f4a">2</span> бригады опытных монтажников</p>
+                    </th>
+                </tr>
+            </table>
         </div>
     </div>
 
