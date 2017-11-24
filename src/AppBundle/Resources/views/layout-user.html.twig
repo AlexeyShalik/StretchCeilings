@@ -17,7 +17,7 @@
                 <div class="col-md-5" style="height: 100px; position: relative">
                     <p style="z-index:99; position: absolute; left: 147px; bottom: 40px;">логотип</p>
                     <img style="position: absolute; left: 135px; bottom: 1px; height:80px; width: 80px" src="{{ asset('bundles/image/logotype.jpg') }}">
-                    <h2 style="padding-left: 200px; padding-top: 10px">Натяжные потолки</h2>
+                    <h3 style="padding-left: 200px; padding-top: 10px">Натяжные потолки</h3>
                 </div>
                 <div class="col-md-5" style="height: 100px; padding-top: 15px;text-align: center">
                     <p style="color: #c9004c; font-size: 22px">Работаем по всей Минской Области</p>
@@ -44,7 +44,9 @@
                 Заказать звонок <i class="glyphicon glyphicon-earphone"></i></a>
         </div>
 
-        {% block content %}{% endblock %}
+        <div class="fluir">
+            {% block content %}{% endblock %}
+        </div>
 
         <footer class="footer" id="contact">
             <div class="container-fluid">
@@ -178,7 +180,7 @@
             function ScaleSlider() {
                 var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
                 if (parentWidth) {
-                    jssor_slider1.$ScaleWidth(parentWidth + 30);
+                    jssor_slider1.$ScaleWidth(parentWidth + 20);
                 }
                 else
                     window.setTimeout(ScaleSlider, 30);

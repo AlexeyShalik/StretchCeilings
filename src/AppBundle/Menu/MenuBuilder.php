@@ -63,7 +63,7 @@ class MenuBuilder implements ContainerAwareInterface
             ->addChild(
                 'Наши работы',
                 array(
-                    'uri' => '#')
+                    'uri' => '#our-works')
             );
         $menu
             ->addChild(

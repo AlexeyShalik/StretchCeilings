@@ -4,136 +4,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <style>
-        .slider {
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            width: 1250px;
-            height: 500px;
-            overflow: hidden;
-        }
-
-        #slider1_container {
-            visibility: hidden;
-            position: relative;
-            margin: -20px;
-            width: 1250px;
-            height: 500px;
-            overflow: hidden;
-        }
-        .transparent {
-            box-shadow: 0 0 50px rgba(0,0,0,0.06);
-            transform: rotate(35deg);
-            left: 19%;
-            position: absolute;
-        }
-        .about-us-round {
-            border-radius: 50%;
-            width: 144px;
-            height: 144px;
-            text-align: center;
-            position: relative;
-            border: 5px solid rgba(0,0,0,0.2);
-            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
-            overflow-x: hidden;
-            overflow-y: hidden;
-            margin-right: 65px
-        }
-
-        .about-us > h2{
-            text-align: center;
-            margin-bottom: 50px
-        }
-        .about-us-round > span, .about-us-round > p{
-            color: white;
-            position: absolute;
-            text-align: center;
-        }
-
-        .about-us {
-            margin-top: 15px;
-            margin-bottom: 15px;
-        }
-
-        .circumference {
-            height: 40px;
-            width: 40px;
-            position: absolute;
-            left: 49px;
-            top: 12px
-        }
-
-        .map {
-            border-bottom: 5px solid rgba(0,0,0,0.2);
-            border-radius:10px;
-            position: absolute;
-            left:50%;
-            top:22%;
-            background-color: #c9004c;
-        }
-        .map img{
-            border-radius:10px;
-            border-bottom: 5px solid rgba(0,0,0,0.2);
-        }
-
-        .info-map {
-            height: 300px;
-            width: 450px;
-            z-index: 99;
-            background-color: #c9004c;
-            position: absolute;
-            top: 31%;
-            left: 7%;
-            border-radius: 10px;
-        }
-
-        .info-map p {
-            margin-top: 30px;
-            font-size: 22px;
-        }
-
-        .block-map {
-            height: 600px;
-            background-image: url({{ asset('bundles/image/stars.svg') }});
-            background-color: #262320;
-            position: relative;
-            z-index: 99;
-            text-align: center;
-            color: white;
-            font-family: Helvetica, sans-serif;
-            font-size: 40px;
-        }
-
-        .compare {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            color: #333333;
-            font-size: 22px;
-            margin: 10px;
-            margin-bottom: 20px;
-        }
-
-        /*slider*/
-        .arrow {display:block;position:absolute;cursor:pointer;transition: 1.2s ease;}
-        .arrow .a {fill:none;stroke:#fff;stroke-width:360;stroke-miterlimit:10;}
-        .arrow:hover{background-color: rgba(0,0,0,0.8);}
-
-        .dot {position:absolute;}
-        .dot .i {position:absolute;cursor:pointer;}
-        .dot .i .b {fill:#000;fill-opacity:0.5;stroke:#fff;stroke-width:1200;stroke-miterlimit:10;stroke-opacity:0.3;}
-        .dot .i:hover .b {fill:#fff;fill-opacity:0.7;stroke:#000;stroke-opacity:0.5;transition: 0.4s ease;}
-        .dot .iav .b {fill:#fff;stroke:#000;fill-opacity:1;}
-        .dot .i.idn {opacity:0.3;}
-
-        .table-about-us tr > th {
-            padding: 10px;
-        }
-
-        .pulse {
-            background-image: url({{ asset('bundles/image/pulse1.png') }});
-            background-repeat:repeat-x;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('bundles/css/index.css') }}" type="text/css" />
 {% endblock %}
 
 {% block content %}
@@ -167,12 +38,12 @@
         </div>
 
 
-        <div data-u="arrowleft" class="arrow" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+        <div data-u="arrowleft" class="arrow" style="width:55px;height:55px;top:0px;left:35px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
             <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
                 <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
             </svg>
         </div>
-        <div data-u="arrowright" class="arrow" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+        <div data-u="arrowright" class="arrow" style="width:55px;height:55px;top:0px;right:15px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
             <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
                 <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
             </svg>
@@ -183,9 +54,9 @@
 
 
     <div class="catalog" id="catalog">
-        <div class="catalog_heading">
+        <h2>
             КАТАЛОГ НАТЯЖНЫХ ПОТОЛКОВ
-        </div>
+        </h2>
         <div class="container container-catalog">
             <div class="catalog_item">
                 <div class="img" style="background-image: url({{ asset('bundles/image/test-catalog-image/img1.jpg') }});"></div>
@@ -243,9 +114,24 @@
         </div>
     </div>
 
+    <div class="container our-works" id="our-works">
+        <h2>Наши работы</h2>
+        <div class="row"></div>
+            <a href="{{ path('index') }}"><div class="box effect2 col-xs-6 col-md-4" style="background-image: url({{ asset('bundles/image/your-work1.png') }})">
+
+            </div></a>
+            <a href="{{ path('index') }}"><div class="box effect2 col-xs-6 col-md-4" style="background-image: url({{ asset('bundles/image/your-work2.jpg') }})">
+
+            </div></a>
+            <a href="{{ path('index') }}"><div class="box effect2 col-xs-6 col-md-4" style="background-image: url({{ asset('bundles/image/your-work3.jpg') }})">
+
+            </div></a>
+        </div>
+    </div>
+
 
     <div class="container">
-        <h3 class="text-center">Сравнение цен крупнейших компаний на ранке</h3>
+        <h2 class="text-center" style="margin: 40px; margin-bottom: 60px">Сравнение цен крупнейших компаний на рынке</h2>
         <div class="container-columns" style="position: relative">
             <p class="border-bottom-grey text-middle comparisson-block_text" style="border-bottom: dotted 4px grey; margin-bottom: 80px">От $11</p>
             <p class="border-bottom-red text-middle comparisson-block_text" style="border-bottom: dotted 4px red;">От $5</p>
@@ -270,9 +156,7 @@
         </div>
     </div>
 
-    <div class="container">
-        <p  class="pulse">w</p>
-    </div>
+    <hr class="style-two">
 
     <div class="about-us container" id="about-us">
         <h2>О нас</h2>
@@ -354,7 +238,7 @@
     </div>
 
 
-    <div class="block-map">
+    <div class="block-map" style="background-image: url({{ asset('bundles/image/stars.svg') }})">
         <div id="map" style="padding-bottom: 50px"></div>
         <p class="title-map">Где нас найти в Слуцке?</p>
         <div class="info-map">

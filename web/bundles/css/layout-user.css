@@ -20,6 +20,7 @@ header {
 .navbar {
     z-index: 100;
 }
+
 .popup {
     position: fixed !important;
     top: 30%;
@@ -85,9 +86,11 @@ footer {
 
 .navbar-default .navbar-nav > li > a {
     color: white;
+    z-index: 101;
 }
 
 .navbar {
     background-color: #00afef;
     border-color: #00afef;
+    z-index: 101;
 }
