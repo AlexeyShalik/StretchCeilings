@@ -5,6 +5,8 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/css/index.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('bundles/css/our-works.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('bundles/css/h2.css') }}" type="text/css" />
 {% endblock %}
 
 {% block content %}
@@ -116,16 +118,10 @@
 
     <div class="container our-works" id="our-works">
         <h2>Наши работы</h2>
-        <div class="row"></div>
-            <a href="{{ path('index') }}"><div class="box effect2 col-xs-6 col-md-4" style="background-image: url({{ asset('bundles/image/your-work1.png') }})">
-
-            </div></a>
-            <a href="{{ path('index') }}"><div class="box effect2 col-xs-6 col-md-4" style="background-image: url({{ asset('bundles/image/your-work2.jpg') }})">
-
-            </div></a>
-            <a href="{{ path('index') }}"><div class="box effect2 col-xs-6 col-md-4" style="background-image: url({{ asset('bundles/image/your-work3.jpg') }})">
-
-            </div></a>
+        <div class="row">
+            <a href="{{ path('our-works') }}"><div class="box effect2 col-xs-6 col-md-4" style="background-image: url({{ asset('bundles/image/your-work1.png') }})"></div></a>
+            <a href="{{ path('our-works') }}"><div class="box effect2 col-xs-6 col-md-4" style="background-image: url({{ asset('bundles/image/your-work2.jpg') }})"></div></a>
+            <a href="{{ path('our-works') }}"><div class="box effect2 col-xs-6 col-md-4" style="background-image: url({{ asset('bundles/image/your-work3.jpg') }})"></div></a>
         </div>
     </div>
 
@@ -242,12 +238,8 @@
         <div id="map" style="padding-bottom: 50px"></div>
         <p class="title-map">Где нас найти в Слуцке?</p>
         <div class="info-map">
-            <p>
-                3-й Железнодорожный пер., 23
-            </p>
-            <p>
-                с 9.00 до 18.00
-            </p>
+            <p>3-й Железнодорожный пер., 23</p>
+            <p>с 9.00 до 18.00</p>
             <p>
                 <i class="glyphicon glyphicon-option-horizontal"></i>
             </p>
@@ -264,4 +256,9 @@
     </div>
 
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/js/slider.js') }}"></script>
 {% endblock %}

@@ -16,6 +16,22 @@ class UsersController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $form = $this->callMeFunction($request);
+        return $this->render('@App/user/index.html.twig', array('callMeForm' => $form->createView(), 'page' => 'index'));
+    }
+
+
+    /**
+     * @Route("/our-works", name="our-works")
+     */
+    public function ourWorksAction(Request $request)
+    {
+        $form = $this->callMeFunction($request);
+        return $this->render('@App/user/our-works.html.twig', array('callMeForm' => $form->createView(), 'page' => 'our-works'));
+    }
+
+    private function callMeFunction(Request $request)
+    {
         $order = new Order();
         $form = $this->createForm(CallMeType::class, $order);
         $form->handleRequest($request);
@@ -49,6 +65,7 @@ class UsersController extends Controller
                 break;
             }
         }
-        return $this->render('@App/user/index.html.twig', array('callMeForm' => $form->createView()));
+        return $form;
     }
+
 }

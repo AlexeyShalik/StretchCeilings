@@ -44,7 +44,7 @@ class MenuBuilder implements ContainerAwareInterface
         return $menu;
     }
 
-    public function frontMenu(FactoryInterface $factory)
+    public function frontMenuIndex(FactoryInterface $factory)
     {
         $menu = $factory->createItem('Home', array('childrenAttributes' => array('class' => 'nav navbar-nav')));
         $menu
@@ -63,7 +63,7 @@ class MenuBuilder implements ContainerAwareInterface
             ->addChild(
                 'Наши работы',
                 array(
-                    'uri' => '#our-works')
+                    'route' => 'our-works')
             );
         $menu
             ->addChild(
@@ -95,6 +95,63 @@ class MenuBuilder implements ContainerAwareInterface
                 'Контакты',
                 array(
                     'uri' => '#contact')
+            );
+
+        return $menu;
+    }
+
+    public function frontMenuOurWorks(FactoryInterface $factory)
+    {
+        $menu = $factory->createItem('Home', array('childrenAttributes' => array('class' => 'nav navbar-nav')));
+        $menu
+            ->addChild(
+                'Главная',
+                array(
+                    'route' => 'index')
+            );
+        $uri = $menu->getChild('Главная')->getUri();
+        $menu
+            ->addChild(
+                'Каталог',
+                array(
+                    'uri' => $uri.'#catalog',)
+            );
+        $menu
+            ->addChild(
+                'Наши работы',
+                array(
+                    'uri' => '#our-works')
+            );
+        $menu
+            ->addChild(
+                'Калькулятор цен',
+                array(
+                    'uri' => $uri.'#')
+            );
+        $menu
+            ->addChild(
+                'Заказать звонок',
+                array(
+                    'uri' => '#',
+                    'attributes' => array('class' => 'call-me'))
+            );
+        $menu
+            ->addChild(
+                'О нас',
+                array(
+                    'uri' => $uri.'#about-us')
+            );
+        $menu
+            ->addChild(
+                'Наши магазины',
+                array(
+                    'uri' => $uri.'#map')
+            );
+        $menu
+            ->addChild(
+                'Контакты',
+                array(
+                    'uri' => $uri.'#contact')
             );
 
         return $menu;
