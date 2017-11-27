@@ -1,0 +1,253 @@
+{% extends "@App/layout-user.html.twig" %}
+
+{% block title %}Каталог натяжных потолков - Слуцк, Минская область{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/css/catalog.css') }}" type="text/css" />
+    <style>
+        .catalog_item {
+           margin: 0 0 30px 30px;
+        }
+        .th-2 {
+            width: 100%;
+        }
+
+        .th-2 > div {
+            background-color: #e9eff2;
+            height: 255px;
+            margin-bottom: 30px;
+            padding: 15px;
+            position: relative;
+        }
+
+        .th-2 h3 {
+            margin-top: 0;
+            text-align:center;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+        }
+
+        .more-info {
+            color: white;
+            position: absolute;
+            right: 10px;
+            bottom: 10px
+        }
+
+        .catalog_item{
+            cursor: default;
+        }
+
+        .more-info:hover {
+            color: white;
+        }
+
+        .price {
+            font-size: 25px;
+            position: absolute;
+            bottom: 10px;
+            left:10px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h2>Каталог</h2>
+    <div class="container">
+        <table>
+            <tr>
+                <th>
+                    <div class="catalog_item">
+                        <div class="img" style="background-image: url({{ asset('bundles/image/test-catalog-image/img1.jpg') }});"></div>
+                        <div class="catalog_item_text" style="background-color: #228B22;">
+                            МАТОВЫЕ НАТЯЖНЫЕ ПОТОЛКИ
+                        </div>
+                    </div>
+                </th>
+                <th class="th-2">
+                    <div>
+                        <h3>Матовый потолок</h3>
+                        <p>Матовый потолок — идеал для ценителей классики.
+                            Матовые потолки создают идеально ровную поверхность нужного цвета.
+                            Они прекрасно подходят для спален, гостиных, детских комнат и других помещений,
+                            где особенно ценен покой. Кроме того, они отличаются плотностью —
+                            даже если у ваших соседей сверху случится протечка,
+                            потолок не пропустит воду в ваш дом, защищая имущество.</p>
+                        <a class="btn btn-default more-info" style="background-color: #228B22;">Подробнее</a>
+                        <p style="color: #228B22;" class="price">Цена От 5$ за м<sup>2</sup></p>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <div class="catalog_item">
+                        <div class="img" style="background-image: url({{ asset('bundles/image/test-catalog-image/img2.jpg') }});"></div>
+                        <div class="catalog_item_text" style="background-color: #F08080;">
+                            ГЛЯНЦЕВЫЕ НАТЯЖНЫЕ ПОТОЛКИ
+                        </div>
+                    </div>
+                </th>
+                <th class="th-2">
+                    <div>
+                        <h3>Глянцевый потолок</h3>
+                        <p>Самое главное — глянец роскошно выглядит.
+                            Этот вариант создаст великолепное впечатление при установке в комнатах
+                            с самой дорогой мебелью и антикварными предметами.
+                            Именно его чаще всего устанавливают в театрах, офисах успешных компаний и
+                            других «статусных» местах.</p>
+                        <a class="btn btn-default more-info" style="background-color: #F08080;">Подробнее</a>
+                        <p style="color: #F08080;" class="price">Цена От 5$ за м<sup>2</sup></p>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <div class="catalog_item">
+                    <div class="img" style="background-image: url({{ asset('bundles/image/test-catalog-image/img3.jpg') }});"></div>
+                    <div class="catalog_item_text" style="background-color: #20B2AA;">
+                        НАТЯЖНЫЕ ПОТОЛКИ DOUBLE VISION
+                    </div>
+                </div>
+                </th>
+                <th class="th-2">
+                    <div>
+                        <h3>DOUBLE VISION потолок</h3>
+                        <p>Натяжной потолок Double Vision – это последняя разработка
+                            специалистов компании Ferico, которая открывает принципиально новые возможности в
+                            оформлении и дизайне потолочного пространства.
+                            Особенностью данного типа потолка является возможность смены изображения
+                            на полотне при переключении световых режимов.
+                            Всего одно нажатие выключателя превратит классический однотонный потолок в
+                            эффектный элемент интерьера.
+                            Потолки Double Vision – это выбор тех, кто любит разнообразие и готов
+                            к творческим экспериментам.</p>
+                        <a class="btn btn-default more-info" style="background-color: #20B2AA;">Подробнее</a>
+                        <p style="color: #20B2AA;" class="price">Цена От 5$ за м<sup>2</sup></p>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <div class="catalog_item">
+                    <div class="img" style="background-image: url({{ asset('bundles/image/test-catalog-image/img5.jpg') }});"></div>
+                    <div class="catalog_item_text" style="background-color: #FF7F50;">
+                        РЕЗНЫЕ ПОТОЛКИ APPLY
+                    </div>
+                </div>
+                </th>
+                <th class="th-2">
+                    <div>
+                        <h3>Резной APPLY потолок</h3>
+                        <p>Резные потолки Apply - это прорыв в мире натяжных потолков.
+                            Принцип APPLY заключается в комбинации полотен с вырезами из цельного полотна,
+                            расположенных вместе или разнесенные на разные уровни Вашего потолка.
+                            Apply позволяет оформить потолок совершенно новым способом отличным от всех
+                            ранее существующих.</p>
+                        <a class="btn btn-default more-info" style="background-color: #FF7F50;">Подробнее</a>
+                        <p style="color: #FF7F50;" class="price">Цена От 5$ за м<sup>2</sup></p>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <div class="catalog_item">
+                    <div class="img" style="background-image: url({{ asset('bundles/image/test-catalog-image/img6.jpg') }});"></div>
+                    <div class="catalog_item_text" style="background-color: #BA55D3;">
+                        ПАРЯЩИЕ НАТЯЖНЫЕ ПОТОЛКИ
+                    </div>
+                </div>
+                </th>
+                <th class="th-2">
+                    <div>
+                        <h3>Парящий потолок</h3>
+                        <p>Парящий натяжной потолок – один из самых красивых и оригинальных способов отделки потолка.
+                            Технология его монтажа была предложена совсем недавно,
+                            и стала настоящим открытием для ценителей изысканных интерьеров.
+                            Благодаря особому зрительному эффекту создается ощущение,
+                            что натянутое полотно вообще не закреплено, а просто висит в воздухе.</p>
+                        <a class="btn btn-default more-info" style="background-color: #BA55D3;">Подробнее</a>
+                        <p style="color: #BA55D3;" class="price">Цена От 5$ за м<sup>2</sup></p>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <div class="catalog_item">
+                    <div class="img" style="background-image: url({{ asset('bundles/image/test-catalog-image/img7.jpg') }});"></div>
+                    <div class="catalog_item_text" style="background-color: #808080;">
+                        ТКАНЕВЫЕ НАТЯЖНЫЕ ПОТОЛКИ
+                    </div>
+                </div>
+                </th>
+                <th class="th-2">
+                    <div>
+                        <h3>Тканевый потолок</h3>
+                        <p>Естественная красота тканевых потолков.
+                            Натуральные, экологически чистые материалы.
+                            Роскошное переплетение нитей. Идеально ровная и гладкая поверхность.
+                            Все это — лишь часть преимуществ, которыми обладают тканевые натяжные потолки.
+                            Они отлично пропускают воздух (в комнате всегда будет правильный микроклимат),
+                            но не выпускают тепло. Возможно нанесение любых изображений.</p>
+                        <a class="btn btn-default more-info" style="background-color: #808080;">Подробнее</a>
+                        <p style="color: #808080;" class="price">Цена От 5$ за м<sup>2</sup></p>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <div class="catalog_item">
+                    <div class="img" style="background-image: url({{ asset('bundles/image/test-catalog-image/img8.jpg') }});"></div>
+                    <div class="catalog_item_text" style="background-color: #8B008B;">
+                        НАТЯЖНЫЕ ПОТОЛКИ С ФОТОПЕЧАТЬЮ
+                    </div>
+                </div>
+                </th>
+                <th class="th-2">
+                    <div>
+                        <h3>С фотопечатью потолок</h3>
+                        <p>Фотопечать на натяжном потолке сделает Ваш натяжной потолок уникальным.
+                           Вы можете выбрать любой рисунок или изображение, которым хотите украсить Ваш потолок.
+                            Чаще всего фотопечать делают в детскую комнату с изображениями для детей,
+                            но в гостиной или на кухне фотопечать будет выглядеть ни чуть не хуже.</p>
+                        <a class="btn btn-default more-info" style="background-color: #8B008B;">Подробнее</a>
+                        <p style="color: #8B008B;" class="price">Цена От 5$ за м<sup>2</sup></p>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <div class="catalog_item">
+                    <div class="img" style="background-image: url({{ asset('bundles/image/test-catalog-image/img9.jpg') }});"></div>
+                    <div class="catalog_item_text" style="background-color: #008080;">
+                        МНОГОУРОВНЕВЫЕ НАТЯЖНЫЕ ПОТОЛКИ
+                    </div>
+                </div>
+                </th>
+                <th class="th-2">
+                    <div>
+                        <h3>Многоуровневый потолок</h3>
+                        <p>Помимо привлекательного внешнего вида такой тип потолка очень практичен,
+                            поскольку при его установке вообще исключается этап подготовки поверхности.
+                            Каким бы ни был потолок, натяжное полотно надежно спрячет все дефекты
+                            в виде неровностей, неприглядных пятен или трещин.
+                            Вариантов для установки конструкций – бесчисленное множество. </p>
+                        <a class="btn btn-default more-info" style="background-color: #008080;">Подробнее</a>
+                        <p style="color: #008080;" class="price">Цена От 5$ за м<sup>2</sup></p>
+                    </div>
+                </th>
+            </tr>
+        </table>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

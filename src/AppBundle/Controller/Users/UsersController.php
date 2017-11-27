@@ -68,4 +68,12 @@ class UsersController extends Controller
         return $form;
     }
 
+    /**
+     * @Route("/catalog", name="catalog")
+     */
+    public function catalogAction(Request $request)
+    {
+        $form = $this->callMeFunction($request);
+        return $this->render('@App/user/catalog.html.twig', array('callMeForm' => $form->createView(), 'page' => 'catalog'));
+    }
 }

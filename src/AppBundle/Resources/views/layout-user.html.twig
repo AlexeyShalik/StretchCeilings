@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('bundles/css/font-awesome.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('bundles/css/catalog.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('bundles/css/layout-user.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('bundles/css/h2.css') }}" type="text/css" />
 {% endblock %}
 
 {% block body %}
@@ -36,7 +37,9 @@
                     {% if page == 'index' %}
                         {{ knp_menu_render('AppBundle:MenuBuilder:frontMenuIndex', {'currentClass': 'active'}) }}
                     {% elseif  page == 'our-works' %}
-                    {{ knp_menu_render('AppBundle:MenuBuilder:frontMenuOurWorks', {'currentClass': 'active'}) }}
+                        {{ knp_menu_render('AppBundle:MenuBuilder:frontMenuOurWorks', {'currentClass': 'active'}) }}
+                     {% elseif  page == 'catalog' %}
+                        {{ knp_menu_render('AppBundle:MenuBuilder:frontMenuCatalog', {'currentClass': 'active'}) }}
                     {% endif %}
                 </div>
             </div>
@@ -113,38 +116,6 @@
     {{ parent() }}
     <script src="{{ asset('bundles/js/jquery.maskedinput.min.js') }}"></script>
     <script src="{{ asset('bundles/js/jssor.slider.min.js') }}"></script>
-    <script>
-        //for scroll menu
-        var navbar = $('.navbar');
-        var navbarBottom = navbar.offset().top;
-        window.onscroll = function() {
-            if (navbar.hasClass('navbar-fixed-top') && window.pageYOffset < navbarBottom) {
-                navbar.addClass('navbar-static-top');
-                navbar.removeClass('navbar-fixed-top');
-            } else if (window.pageYOffset > navbarBottom) {
-                navbar.addClass('navbar-fixed-top');
-                navbar.removeClass('navbar-static-top');
-            }
-        };
-
-        //for popup call
-        var callMe = $('.call-me');
-        var close = $('.close');
-        var popup = $('.popup');
-
-        callMe.on('click', function () {
-            $('#popup-background').attr('hidden', false);
-            $('.fluir').css('filter', 'blur(5px)');
-            popup.attr('hidden', false);
-        });
-
-        close.on('click', function () {
-            $('#popup-background').attr('hidden', 'hidden');
-            $('.fluir').css('filter', 'unset');
-            popup.attr('hidden', 'hidden');
-        });
-
-        $('.phone').mask("+375 (99) 999-99-99");
-
-    </script>
+    <script src="{{ asset('bundles/js/scroll-header.js') }}"></script>
+    <script src="{{ asset('bundles/js/popup-call-me.js') }}"></script>
 {% endblock %}

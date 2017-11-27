@@ -57,7 +57,7 @@ class MenuBuilder implements ContainerAwareInterface
             ->addChild(
                 'Каталог',
                 array(
-                    'uri' => '#catalog')
+                    'route' => 'catalog')
             );
         $menu
             ->addChild(
@@ -114,13 +114,70 @@ class MenuBuilder implements ContainerAwareInterface
             ->addChild(
                 'Каталог',
                 array(
-                    'uri' => $uri.'#catalog',)
+                    'route' => 'catalog',)
             );
         $menu
             ->addChild(
                 'Наши работы',
                 array(
                     'uri' => '#our-works')
+            );
+        $menu
+            ->addChild(
+                'Калькулятор цен',
+                array(
+                    'uri' => $uri.'#')
+            );
+        $menu
+            ->addChild(
+                'Заказать звонок',
+                array(
+                    'uri' => '#',
+                    'attributes' => array('class' => 'call-me'))
+            );
+        $menu
+            ->addChild(
+                'О нас',
+                array(
+                    'uri' => $uri.'#about-us')
+            );
+        $menu
+            ->addChild(
+                'Наши магазины',
+                array(
+                    'uri' => $uri.'#map')
+            );
+        $menu
+            ->addChild(
+                'Контакты',
+                array(
+                    'uri' => $uri.'#contact')
+            );
+
+        return $menu;
+    }
+
+    public function frontMenuCatalog(FactoryInterface $factory)
+    {
+        $menu = $factory->createItem('Home', array('childrenAttributes' => array('class' => 'nav navbar-nav')));
+        $menu
+            ->addChild(
+                'Главная',
+                array(
+                    'route' => 'index')
+            );
+        $uri = $menu->getChild('Главная')->getUri();
+        $menu
+            ->addChild(
+                'Каталог',
+                array(
+                    'uri' => '#catalog',)
+            );
+        $menu
+            ->addChild(
+                'Наши работы',
+                array(
+                    'route' => 'our-works')
             );
         $menu
             ->addChild(

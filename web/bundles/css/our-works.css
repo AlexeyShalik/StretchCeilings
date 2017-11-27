@@ -53,4 +53,47 @@
     left: auto;
 }
 
+.black-background {
+    background-color:#000;
+    z-index: 105;
+    opacity: 0.9;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0px;
+}
+
+.close-black-background {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 35px;
+    opacity: 1;
+}
+
+.close-black-background:hover,
+.close-black-background:focus,
+.div-black-background-image > i:hover,
+.div-black-background-image > i:focus{
+    color: rgba(255,255,255,1);
+    text-decoration: none;
+    cursor: pointer;
+    filter: alpha(opacity=50);
+    opacity: .5;
+}
+
+.black-background-image {
+    max-height: 500px;
+    max-width: 900px;
+    position: fixed;
+    z-index: 106;
+    text-align: center;
+}
+
+.div-black-background-image > i{
+    position: fixed;
+    top:48%;
+    font-size: 35px;
+    z-index: 107;
+}
 

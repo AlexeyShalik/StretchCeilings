@@ -1,7 +1,7 @@
 h2 {
     text-shadow: 1px 2px 3px #DDEEFF, 0 0 0 black, -1px 1px 0 #DDEEFF, 1px 1px 0 white;
     font-family: Helvetica, sans-serif;
-    color: rgba(254, 103, 2, .8);
+    color: #00afef;
     font-size: 3em !important;
     text-align:center;
     margin-top: 20px;
