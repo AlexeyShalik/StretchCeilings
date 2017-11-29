@@ -4,8 +4,17 @@ body {
 }
 
 header {
-    height: 100px; width: 98%;
+    height: 150px;
+    width: 98%;
+    color: #00afef;
+    text-align: center;
 }
+
+header img {
+    height: 30px;
+    width: 30px;
+}
+
 .navbar-nav > li{
     float:none!important;
     display: table-cell;
@@ -102,4 +111,8 @@ footer {
     height: 100%;
     position: fixed;
     top:0px;
+}
+
+.phone-number td {
+    padding: 5px;
 }

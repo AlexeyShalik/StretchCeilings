@@ -4,14 +4,29 @@
     top:80px;
 }
 .box {
-    height:200px;
-    background:#FFF;
-    margin:40px auto;
-    border: 3px solid #00afef;
-    border-radius: 20px;
-    background-size: cover;
-    width: 300px;
-    margin: 45px;
+       height:200px;
+       background:#FFF;
+       margin:40px auto;
+       border: 3px solid #00afef;
+       border-radius: 20px;
+       background-size: cover;
+       width: 300px;
+       margin: 45px;
+   }
+
+/*.box:hover {*/
+    /*height:205px;*/
+    /*background:#FFF;*/
+    /*margin:40px auto;*/
+    /*border: 3px solid #0d6aad;*/
+    /*border-radius: 20px;*/
+    /*background-size: cover;*/
+    /*width: 320px;*/
+    /*margin: 35px;*/
+/*}*/
+.box:hover {
+    box-shadow: 0 0 20px #000000;
+    border: 3px solid #0d6aad;
 }
 
 .our-works {

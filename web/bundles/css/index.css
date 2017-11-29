@@ -2,17 +2,17 @@
     position: absolute;
     left: 0px;
     top: 0px;
-    width: 1200px;
-    height: 500px;
+    width: 1000px;
+    height:220px;
     overflow: hidden;
 }
 
 #slider1_container {
     visibility: hidden;
     position: relative;
-    margin: -20px;
-    width: 1200px;
-    height: 500px;
+    margin-top: -20px;
+    width: 1000px;
+    height: 220px;
     overflow: hidden;
 }
 .transparent {
@@ -140,4 +140,8 @@ hr.style-two {
 }
 .container-catalog > a:hover {
     color: white;
+}
+
+.catalog_item:hover {
+    box-shadow: 0 0 10px #000000;
 }
